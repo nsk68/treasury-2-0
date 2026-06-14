@@ -21,10 +21,10 @@
       --shadow-hover: rgba(61, 31, 13, 0.15);
       
       /* Pillar specific borders & badges colors */
-      --pillar-infra: #9c7b50;
-      --pillar-intel: #bd7d42;
-      --pillar-talent: #3D1F0D;
-      --pillar-strategy: #8a6a4f;
+      --pillar-infra: #0f6c91; /* infrastructure teal */
+      --pillar-intel: #d06d27; /* intelligence orange */
+      --pillar-talent: #0d2240; /* talent dark blue */
+      --pillar-strategy: #874b93; /* strategy purple */
     }
 
     * {
@@ -135,10 +135,50 @@
       color: var(--bg-cream);
     }
 
-    /* 12-Card Grid Layout */
+    /* Column Headers above Grid matching columns */
+    .grid-column-headers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 1rem;
+      border-bottom: 2.5px solid rgba(61, 31, 13, 0.18);
+      padding-bottom: 0.85rem;
+    }
+
+    .col-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .col-icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 0.35rem;
+    }
+
+    .col-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .col-title[data-pillar="infra"] { color: var(--pillar-infra); }
+    .col-title[data-pillar="intel"] { color: var(--pillar-intel); }
+    .col-title[data-pillar="talent"] { color: var(--pillar-talent); }
+    .col-title[data-pillar="strategy"] { color: var(--pillar-strategy); }
+
+    /* 12-Card Grid Layout (Structured column-wise) */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      /* Force flow to run column-by-column */
+      grid-auto-flow: column;
+      grid-template-rows: repeat(3, auto);
       gap: 1.5rem;
       width: 100%;
       max-width: 1200px;
@@ -317,24 +357,6 @@
       gap: 0.25rem;
     }
 
-    /* Vector SVG Icons */
-    .icon-wrapper {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background-color: var(--bg-cream);
-      color: var(--espresso);
-      transition: all 0.3s ease;
-    }
-
-    .card:hover .icon-wrapper {
-      background-color: var(--tan-warm);
-      color: var(--white);
-    }
-
     /* Footer & CTA */
     footer {
       width: 100%;
@@ -400,6 +422,11 @@
     @media (max-width: 1024px) {
       .grid-container {
         grid-template-columns: repeat(3, 1fr);
+        grid-auto-flow: row;
+        grid-template-rows: auto;
+      }
+      .grid-column-headers {
+        display: none; /* Hide column headers when not in 4-column layout */
       }
     }
 
@@ -451,9 +478,38 @@
     </div>
   </header>
 
-  <!-- Interactive Grid Container -->
+  <!-- Visual Column Headers matching columns -->
+  <div class="grid-column-headers">
+    <div class="col-header">
+      <svg class="col-icon" fill="none" stroke="var(--pillar-infra)" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="col-title" data-pillar="infra">Infrastructure</div>
+    </div>
+    <div class="col-header">
+      <svg class="col-icon" fill="none" stroke="var(--pillar-intel)" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="col-title" data-pillar="intel">Intelligence</div>
+    </div>
+    <div class="col-header">
+      <svg class="col-icon" fill="none" stroke="var(--pillar-talent)" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="col-title" data-pillar="talent">Talent</div>
+    </div>
+    <div class="col-header">
+      <svg class="col-icon" fill="none" stroke="var(--pillar-strategy)" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="col-title" data-pillar="strategy">Strategy</div>
+    </div>
+  </div>
+
+  <!-- Interactive Grid Container (Structured column-wise) -->
   <div class="grid-container">
 
+    <!-- COLUMN 1: Infrastructure -->
     <!-- Card 1 -->
     <div class="card" onclick="toggleCard(this)" data-pillar="infra">
       <div class="card-face card-front">
@@ -547,6 +603,7 @@
       </div>
     </div>
 
+    <!-- COLUMN 2: Intelligence -->
     <!-- Card 4 -->
     <div class="card" onclick="toggleCard(this)" data-pillar="intel">
       <div class="card-face card-front">
@@ -640,6 +697,7 @@
       </div>
     </div>
 
+    <!-- COLUMN 3: Talent -->
     <!-- Card 7 -->
     <div class="card" onclick="toggleCard(this)" data-pillar="talent">
       <div class="card-face card-front">
@@ -733,6 +791,7 @@
       </div>
     </div>
 
+    <!-- COLUMN 4: Strategy -->
     <!-- Card 10 -->
     <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
       <div class="card-face card-front">
@@ -859,7 +918,6 @@
     const cards = document.querySelectorAll('.card');
 
     flipAllBtn.addEventListener('click', () => {
-      // If any card is not flipped, flip all to back. Else flip all to front.
       const anyUnflipped = Array.from(cards).some(card => !card.classList.contains('flipped'));
       
       cards.forEach(card => {
@@ -870,7 +928,6 @@
         }
       });
 
-      // Update button text accordingly
       if (anyUnflipped) {
         flipAllBtn.innerHTML = `
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -888,7 +945,6 @@
       }
     });
 
-    // Reset View to original front-facing state
     resetBtn.addEventListener('click', () => {
       cards.forEach(card => card.classList.remove('flipped'));
       flipAllBtn.innerHTML = `
