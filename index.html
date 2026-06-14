@@ -33,95 +33,97 @@
       padding: 0;
     }
 
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Prevent scrolling on the entire page */
+    }
+
     body {
       font-family: 'Outfit', sans-serif;
       background-color: var(--bg-cream);
       color: var(--espresso);
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 2rem 1rem 4rem 1rem;
-      overflow-x: hidden;
+      padding: 0.75rem 1rem;
     }
 
-    /* Brand Header */
+    /* Brand Header - reduced margins and padding */
     header {
       width: 100%;
       max-width: 1200px;
       text-align: center;
-      margin-bottom: 2.5rem;
-      border-bottom: 2px solid rgba(61, 31, 13, 0.15);
-      padding-bottom: 2rem;
+      margin: 0 auto 0.5rem auto;
+      border-bottom: 1px solid rgba(61, 31, 13, 0.12);
+      padding-bottom: 0.5rem;
+      flex-shrink: 0; /* Header stays fixed size */
     }
 
     .brand-logo {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0.25rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .brand-logo span {
       font-weight: 300;
       opacity: 0.8;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
     }
 
     .main-title {
       font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.15rem;
       letter-spacing: 0.05em;
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: 0.85rem;
       font-weight: 400;
       opacity: 0.9;
-      max-width: 600px;
-      margin: 0 auto 1.5rem auto;
-      line-height: 1.5;
+      max-width: 650px;
+      margin: 0 auto 0.5rem auto;
+      line-height: 1.35;
     }
 
     /* Grid layout controls */
     .controls {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       justify-content: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+      margin-bottom: 0.25rem;
     }
 
     .btn {
       background-color: var(--espresso);
       color: var(--bg-cream);
       border: 1px solid var(--espresso);
-      padding: 0.75rem 1.75rem;
-      font-size: 0.95rem;
-      font-weight: 500;
+      padding: 0.45rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
       border-radius: 4px;
       cursor: pointer;
       font-family: 'Outfit', sans-serif;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 4px 6px var(--shadow-subtle);
+      gap: 0.4rem;
+      box-shadow: 0 2px 4px var(--shadow-subtle);
     }
 
     .btn:hover {
       background-color: transparent;
       color: var(--espresso);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px var(--shadow-hover);
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
@@ -135,16 +137,27 @@
       color: var(--bg-cream);
     }
 
+    /* Main Grid Frame - takes up remaining screen space */
+    .grid-wrapper {
+      flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 0; /* critical for flex children inside fixed heights */
+    }
+
     /* Column Headers above Grid matching columns */
     .grid-column-headers {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 1rem;
       width: 100%;
-      max-width: 1200px;
-      margin-bottom: 1rem;
-      border-bottom: 2.5px solid rgba(61, 31, 13, 0.18);
-      padding-bottom: 0.85rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(61, 31, 13, 0.15);
+      padding-bottom: 0.4rem;
+      flex-shrink: 0;
     }
 
     .col-header {
@@ -155,14 +168,14 @@
     }
 
     .col-icon {
-      width: 28px;
-      height: 28px;
-      margin-bottom: 0.35rem;
+      width: 20px;
+      height: 20px;
+      margin-bottom: 0.15rem;
     }
 
     .col-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
+      font-size: 0.85rem;
       font-weight: 700;
       letter-spacing: 0.05em;
     }
@@ -172,28 +185,28 @@
     .col-title[data-pillar="talent"] { color: var(--pillar-talent); }
     .col-title[data-pillar="strategy"] { color: var(--pillar-strategy); }
 
-    /* 12-Card Grid Layout (Structured column-wise) */
+    /* 12-Card Grid Layout (Fills remaining height) */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      /* Force flow to run column-by-column */
       grid-auto-flow: column;
-      grid-template-rows: repeat(3, auto);
-      gap: 1.5rem;
+      grid-template-rows: repeat(3, 1fr); /* Equal heights on the 3 rows */
+      gap: 0.85rem;
       width: 100%;
-      max-width: 1200px;
-      perspective: 1200px;
-      margin-bottom: 3.5rem;
+      flex: 1;
+      min-height: 0;
+      perspective: 1000px;
+      padding-bottom: 0.5rem;
     }
 
     /* Interactive Flip Card */
     .card {
-      height: 320px;
       cursor: pointer;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 8px;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 6px;
+      height: 100%; /* Fill allocated row cell height */
     }
 
     .card.flipped {
@@ -205,14 +218,14 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 8px;
-      padding: 1.75rem;
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 8px 16px var(--shadow-subtle);
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      border: 1px solid rgba(61, 31, 13, 0.12);
+      box-shadow: 0 4px 8px var(--shadow-subtle);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      border: 1px solid rgba(61, 31, 13, 0.1);
     }
 
     /* Card Front Styling */
@@ -222,19 +235,19 @@
     }
 
     .card:hover .card-front {
-      box-shadow: 0 12px 24px var(--shadow-hover);
-      transform: translateY(-4px);
+      box-shadow: 0 6px 14px var(--shadow-hover);
+      transform: translateY(-2px);
     }
 
     .card-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       width: 100%;
     }
 
     .trend-num {
-      font-size: 2.2rem;
+      font-size: 1.6rem;
       font-family: 'Cinzel', serif;
       font-weight: 700;
       color: var(--espresso);
@@ -243,24 +256,24 @@
     }
 
     .pillar-badge {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.35rem 0.75rem;
-      border-radius: 4px;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
       color: var(--white);
     }
 
     .trend-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      line-height: 1.4;
+      line-height: 1.3;
       color: var(--espresso);
       margin-top: auto;
       margin-bottom: auto;
-      padding-top: 1rem;
+      padding-top: 0.4rem;
     }
 
     .card-bottom {
@@ -268,26 +281,26 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      border-top: 1px solid rgba(61, 31, 13, 0.08);
-      padding-top: 0.75rem;
+      border-top: 1px solid rgba(61, 31, 13, 0.06);
+      padding-top: 0.4rem;
     }
 
     .pillar-name {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: var(--espresso);
-      opacity: 0.6;
+      opacity: 0.55;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
     .flip-hint {
-      font-size: 0.75rem;
-      font-weight: 500;
+      font-size: 0.7rem;
+      font-weight: 600;
       color: var(--tan-warm);
       display: flex;
       align-items: center;
-      gap: 0.25rem;
+      gap: 0.15rem;
     }
 
     /* Card Back Styling */
@@ -300,43 +313,45 @@
 
     .card-back .trend-title-back {
       font-family: 'Cinzel', serif;
-      font-size: 1rem;
+      font-size: 0.8rem;
       font-weight: 700;
       opacity: 0.75;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
       border-bottom: 1px solid rgba(240, 235, 225, 0.15);
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.25rem;
     }
 
     .stat-container {
       background-color: rgba(240, 235, 225, 0.08);
-      border-left: 3px solid var(--tan-warm);
-      padding: 0.85rem 1rem;
-      border-radius: 0 4px 4px 0;
-      margin-bottom: 1rem;
+      border-left: 2.5px solid var(--tan-warm);
+      padding: 0.4rem 0.6rem;
+      border-radius: 0 3px 3px 0;
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
     }
 
     .stat-value {
       font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--tan-warm);
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
     .stat-label {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       opacity: 0.75;
-      margin-top: 0.2rem;
+      margin-top: 0.1rem;
     }
 
     .trend-desc {
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 0.78rem;
+      line-height: 1.35;
       font-weight: 400;
       opacity: 0.95;
+      overflow-y: auto; /* Allow text-scrolling locally inside card back if needed */
+      max-height: 50%;
     }
 
     .card-back-footer {
@@ -348,77 +363,40 @@
     }
 
     .back-indicator {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 400;
       color: var(--tan-warm);
       opacity: 0.8;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
     }
 
-    /* Footer & CTA */
+    /* Small Footer - stays pinned */
     footer {
       width: 100%;
       max-width: 1200px;
       text-align: center;
-      border-top: 2px solid rgba(61, 31, 13, 0.15);
-      padding-top: 2.5rem;
-      margin-top: 1rem;
+      border-top: 1px solid rgba(61, 31, 13, 0.12);
+      padding-top: 0.4rem;
+      margin: 0.25rem auto 0 auto;
+      flex-shrink: 0;
+    }
+
+    .footer-content {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      gap: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--espresso);
+      opacity: 0.7;
     }
 
-    .cta-container {
-      background-color: var(--white);
-      border: 1px solid rgba(61, 31, 13, 0.12);
-      border-radius: 8px;
-      padding: 2rem;
-      max-width: 700px;
-      width: 100%;
-      box-shadow: 0 8px 16px var(--shadow-subtle);
-    }
-
-    .cta-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .cta-text {
-      font-size: 1rem;
-      line-height: 1.5;
-      margin-bottom: 1.25rem;
-      opacity: 0.85;
-    }
-
-    .contact-link {
+    .contact-link-footer {
       color: var(--espresso);
       font-weight: 600;
       text-decoration: none;
-      border-bottom: 2px solid var(--tan-warm);
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding-bottom: 2px;
+      border-bottom: 1.5px solid var(--tan-warm);
     }
 
-    .contact-link:hover {
-      color: var(--tan-warm);
-      border-bottom-color: var(--espresso);
-    }
-
-    .footer-credits {
-      font-size: 0.85rem;
-      opacity: 0.6;
-      letter-spacing: 0.05em;
-    }
-
-    /* Responsive Breakpoints */
+    /* Responsive Breakpoints - default scroll behaviors on small devices if necessary */
     @media (max-width: 1024px) {
       .grid-container {
         grid-template-columns: repeat(3, 1fr);
@@ -426,7 +404,11 @@
         grid-template-rows: auto;
       }
       .grid-column-headers {
-        display: none; /* Hide column headers when not in 4-column layout */
+        display: none;
+      }
+      html, body {
+        overflow: auto; /* allow scroll on tablet/mobile */
+        height: auto;
       }
     }
 
@@ -434,24 +416,11 @@
       .grid-container {
         grid-template-columns: repeat(2, 1fr);
       }
-      .main-title {
-        font-size: 2rem;
-      }
-      .card {
-        height: 300px;
-      }
     }
 
     @media (max-width: 480px) {
       .grid-container {
         grid-template-columns: 1fr;
-      }
-      .main-title {
-        font-size: 1.75rem;
-      }
-      .btn {
-        width: 100%;
-        justify-content: center;
       }
     }
   </style>
@@ -469,7 +438,7 @@
     <!-- Active Interaction Buttons -->
     <div class="controls">
       <button class="btn" id="flipAllBtn">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         Flip All Cards
@@ -479,430 +448,421 @@
   </header>
 
   <!-- Visual Column Headers matching columns -->
-  <div class="grid-column-headers">
-    <div class="col-header">
-      <svg class="col-icon" fill="none" stroke="var(--pillar-infra)" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div class="col-title" data-pillar="infra">Infrastructure</div>
-    </div>
-    <div class="col-header">
-      <svg class="col-icon" fill="none" stroke="var(--pillar-intel)" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div class="col-title" data-pillar="intel">Intelligence</div>
-    </div>
-    <div class="col-header">
-      <svg class="col-icon" fill="none" stroke="var(--pillar-talent)" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div class="col-title" data-pillar="talent">Talent</div>
-    </div>
-    <div class="col-header">
-      <svg class="col-icon" fill="none" stroke="var(--pillar-strategy)" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div class="col-title" data-pillar="strategy">Strategy</div>
-    </div>
-  </div>
-
-  <!-- Interactive Grid Container (Structured column-wise) -->
-  <div class="grid-container">
-
-    <!-- COLUMN 1: Infrastructure -->
-    <!-- Card 1 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="infra">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">01</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
-        </div>
-        <h3 class="trend-title">Agent Native Infrastructure</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 01</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Agent Native Infrastructure</h4>
-        <div class="stat-container">
-          <div class="stat-value">Table Stakes</div>
-          <div class="stat-label">the new baseline, not the edge</div>
-        </div>
-        <p class="trend-desc">Agent native infrastructure becomes table stakes; Legacy systems unable to support treasury AI ambition.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="infra">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">02</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
-        </div>
-        <h3 class="trend-title">Multi-rail Reality</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 01</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Multi-rail Reality</h4>
-        <div class="stat-container">
-          <div class="stat-value">300+</div>
-          <div class="stat-label">payment methods globally</div>
-        </div>
-        <p class="trend-desc">Multi-rail strategy becomes compelling and inevitable as global payment fragmentation accelerates.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="infra">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">03</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
-        </div>
-        <h3 class="trend-title">Tokenization past the Hype</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 01</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Tokenization past the Hype</h4>
-        <div class="stat-container">
-          <div class="stat-value">2026</div>
-          <div class="stat-label">the year of real adoption</div>
-        </div>
-        <p class="trend-desc">Stablecoins and Deposit tokens emerge stronger; Treasury and commercial use catching up.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- COLUMN 2: Intelligence -->
-    <!-- Card 4 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="intel">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">04</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
-        </div>
-        <h3 class="trend-title">Permanent Polycrisis</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 02</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Permanent Polycrisis</h4>
-        <div class="stat-container">
-          <div class="stat-value">$62T</div>
-          <div class="stat-label">market cap erased since 2001</div>
-        </div>
-        <p class="trend-desc">Treasury resiliency & agility becomes business critical as disruptions compound.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="intel">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">05</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
-        </div>
-        <h3 class="trend-title">Regulatory Density Ramp</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 02</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Regulatory Density Ramp</h4>
-        <div class="stat-container">
-          <div class="stat-value">4+</div>
-          <div class="stat-label">major frameworks at once</div>
-        </div>
-        <p class="trend-desc">Shift from reactive compliance to proactive Intelligence; NACHA, Basel IV, ISO 20022, Genius Act etc.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="intel">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">06</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
-        </div>
-        <h3 class="trend-title">Fraud Outpacing Defense</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 02</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Fraud Outpacing Defense</h4>
-        <div class="stat-container">
-          <div class="stat-value">63 &rarr; 7 days</div>
-          <div class="stat-label">to exploit (2018 &rarr; today)</div>
-        </div>
-        <p class="trend-desc">$40B in AI amplified risk losses projected by 2027 as attack windows collapse.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- COLUMN 3: Talent -->
-    <!-- Card 7 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="talent">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">07</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
-        </div>
-        <h3 class="trend-title">Human in the Loop</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 03</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Human in the Loop</h4>
-        <div class="stat-container">
-          <div class="stat-value">Zero Error</div>
-          <div class="stat-label">the treasury standard</div>
-        </div>
-        <p class="trend-desc">Low to zero-error standard in treasury makes the case for AI pairing with human judgment.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 8 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="talent">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">08</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
-        </div>
-        <h3 class="trend-title">Hollowing of the Middle</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 03</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Hollowing of the Middle</h4>
-        <div class="stat-container">
-          <div class="stat-value">72%</div>
-          <div class="stat-label">treasuries face hiring difficulty</div>
-        </div>
-        <p class="trend-desc">Cutting entry-levels kills pipeline; Average teams run with ~12 FTEs.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 9 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="talent">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">09</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
-        </div>
-        <h3 class="trend-title">The New Skill Stack</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 03</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">The New Skill Stack</h4>
-        <div class="stat-container">
-          <div class="stat-value">4 Core Skills</div>
-          <div class="stat-label">now commanding premium</div>
-        </div>
-        <p class="trend-desc">AI literacy, data fluency, domain expertise, and strategic value articulation commanding premium.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- COLUMN 4: Strategy -->
-    <!-- Card 10 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">10</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
-        </div>
-        <h3 class="trend-title">In-House Bank Imperative</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 04</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">In-House Bank Imperative</h4>
-        <div class="stat-container">
-          <div class="stat-value">1 Hub</div>
-          <div class="stat-label">vs. fragmented liquidity</div>
-        </div>
-        <p class="trend-desc">Complex account structure and decentralized liquidity management eating operational bandwidth.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 11 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">11</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
-        </div>
-        <h3 class="trend-title">Working Capital Gap</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 04</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Working Capital Gap</h4>
-        <div class="stat-container">
-          <div class="stat-value">$761B</div>
-          <div class="stat-label">free cash flow trapped</div>
-        </div>
-        <p class="trend-desc">Trapped working capital becomes the big treasury opportunity to unlock.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 12 -->
-    <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
-      <div class="card-face card-front">
-        <div class="card-top">
-          <span class="trend-num">12</span>
-          <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
-        </div>
-        <h3 class="trend-title">Seat at the Deal Table</h3>
-        <div class="card-bottom">
-          <span class="pillar-name">Pillar 04</span>
-          <div class="flip-hint">
-            <span>Flip</span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <h4 class="trend-title-back">Seat at the Deal Table</h4>
-        <div class="stat-container">
-          <div class="stat-value">+26%</div>
-          <div class="stat-label">global M&A volume surge</div>
-        </div>
-        <p class="trend-desc">Large cross border deals demand early treasury engagement than ever before.</p>
-        <div class="card-back-footer">
-          <span class="back-indicator">Click to Return</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Engagement Footer -->
-  <footer>
-    <div class="cta-container">
-      <h3 class="cta-title">Let's keep the conversation going</h3>
-      <p class="cta-text">Which of these 12 trends hits closest to home for you? Share your views and let's talk — I'd love to hear how this lands for your treasury team.</p>
-      <a href="mailto:nirav.s.kakariya@jpmorgan.com" class="contact-link">
-        <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+  <div class="grid-wrapper">
+    <div class="grid-column-headers">
+      <div class="col-header">
+        <svg class="col-icon" fill="none" stroke="var(--pillar-infra)" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        nirav.s.kakariya@jpmorgan.com
-      </a>
+        <div class="col-title" data-pillar="infra">Infrastructure</div>
+      </div>
+      <div class="col-header">
+        <svg class="col-icon" fill="none" stroke="var(--pillar-intel)" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="col-title" data-pillar="intel">Intelligence</div>
+      </div>
+      <div class="col-header">
+        <svg class="col-icon" fill="none" stroke="var(--pillar-talent)" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="col-title" data-pillar="talent">Talent</div>
+      </div>
+      <div class="col-header">
+        <svg class="col-icon" fill="none" stroke="var(--pillar-strategy)" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="col-title" data-pillar="strategy">Strategy</div>
+      </div>
     </div>
-    
-    <div class="footer-credits">
-      Treasury 2.0 &bull; J.P. Morgan Payments &bull; Interactive Trend Navigator
+
+    <!-- Interactive Grid Container (Structured column-wise, fills screen height) -->
+    <div class="grid-container">
+
+      <!-- COLUMN 1: Infrastructure -->
+      <!-- Card 1 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="infra">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">01</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
+          </div>
+          <h3 class="trend-title">Agent Native Infrastructure</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 01</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Agent Native Infrastructure</h4>
+          <div class="stat-container">
+            <div class="stat-value">Table Stakes</div>
+            <div class="stat-label">the new baseline, not the edge</div>
+          </div>
+          <p class="trend-desc">Agent native infrastructure becomes table stakes; Legacy systems unable to support treasury AI ambition.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="infra">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">02</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
+          </div>
+          <h3 class="trend-title">Multi-rail Reality</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 01</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Multi-rail Reality</h4>
+          <div class="stat-container">
+            <div class="stat-value">300+</div>
+            <div class="stat-label">payment methods globally</div>
+          </div>
+          <p class="trend-desc">Multi-rail strategy becomes compelling and inevitable as global payment fragmentation accelerates.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="infra">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">03</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
+          </div>
+          <h3 class="trend-title">Tokenization past the Hype</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 01</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Tokenization past the Hype</h4>
+          <div class="stat-container">
+            <div class="stat-value">2026</div>
+            <div class="stat-label">the year of real adoption</div>
+          </div>
+          <p class="trend-desc">Stablecoins and Deposit tokens emerge stronger; Treasury and commercial use catching up.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2: Intelligence -->
+      <!-- Card 4 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="intel">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">04</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
+          </div>
+          <h3 class="trend-title">Permanent Polycrisis</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 02</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Permanent Polycrisis</h4>
+          <div class="stat-container">
+            <div class="stat-value">$62T</div>
+            <div class="stat-label">market cap erased since 2001</div>
+          </div>
+          <p class="trend-desc">Treasury resiliency & agility becomes business critical as disruptions compound.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="intel">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">05</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
+          </div>
+          <h3 class="trend-title">Regulatory Density Ramp</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 02</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Regulatory Density Ramp</h4>
+          <div class="stat-container">
+            <div class="stat-value">4+</div>
+            <div class="stat-label">major frameworks at once</div>
+          </div>
+          <p class="trend-desc">Shift from reactive compliance to proactive Intelligence; NACHA, Basel IV, ISO 20022, Genius Act etc.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="intel">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">06</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
+          </div>
+          <h3 class="trend-title">Fraud Outpacing Defense</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 02</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Fraud Outpacing Defense</h4>
+          <div class="stat-container">
+            <div class="stat-value">63 &rarr; 7 days</div>
+            <div class="stat-label">to exploit (2018 &rarr; today)</div>
+          </div>
+          <p class="trend-desc">$40B in AI amplified risk losses projected by 2027 as attack windows collapse.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 3: Talent -->
+      <!-- Card 7 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="talent">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">07</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
+          </div>
+          <h3 class="trend-title">Human in the Loop</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 03</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Human in the Loop</h4>
+          <div class="stat-container">
+            <div class="stat-value">Zero Error</div>
+            <div class="stat-label">the treasury standard</div>
+          </div>
+          <p class="trend-desc">Low to zero-error standard in treasury makes the case for AI pairing with human judgment.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="talent">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">08</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
+          </div>
+          <h3 class="trend-title">Hollowing of the Middle</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 03</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Hollowing of the Middle</h4>
+          <div class="stat-container">
+            <div class="stat-value">72%</div>
+            <div class="stat-label">treasuries face hiring difficulty</div>
+          </div>
+          <p class="trend-desc">Cutting entry-levels kills pipeline; Average teams run with ~12 FTEs.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="talent">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">09</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
+          </div>
+          <h3 class="trend-title">The New Skill Stack</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 03</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">The New Skill Stack</h4>
+          <div class="stat-container">
+            <div class="stat-value">4 Core Skills</div>
+            <div class="stat-label">now commanding premium</div>
+          </div>
+          <p class="trend-desc">AI literacy, data fluency, domain expertise, and strategic value articulation commanding premium.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 4: Strategy -->
+      <!-- Card 10 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">10</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
+          </div>
+          <h3 class="trend-title">In-House Bank Imperative</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 04</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">In-House Bank Imperative</h4>
+          <div class="stat-container">
+            <div class="stat-value">1 Hub</div>
+            <div class="stat-label">vs. fragmented liquidity</div>
+          </div>
+          <p class="trend-desc">Complex account structure and decentralized liquidity management eating operational bandwidth.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">11</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
+          </div>
+          <h3 class="trend-title">Working Capital Gap</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 04</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Working Capital Gap</h4>
+          <div class="stat-container">
+            <div class="stat-value">$761B</div>
+            <div class="stat-label">free cash flow trapped</div>
+          </div>
+          <p class="trend-desc">Trapped working capital becomes the big treasury opportunity to unlock.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
+        <div class="card-face card-front">
+          <div class="card-top">
+            <span class="trend-num">12</span>
+            <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
+          </div>
+          <h3 class="trend-title">Seat at the Deal Table</h3>
+          <div class="card-bottom">
+            <span class="pillar-name">Pillar 04</span>
+            <div class="flip-hint">
+              <span>Flip</span>
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <h4 class="trend-title-back">Seat at the Deal Table</h4>
+          <div class="stat-container">
+            <div class="stat-value">+26%</div>
+            <div class="stat-label">global M&A volume surge</div>
+          </div>
+          <p class="trend-desc">Large cross border deals demand early treasury engagement than ever before.</p>
+          <div class="card-back-footer">
+            <span class="back-indicator">Return &larr;</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pinned Engagement Footer -->
+  <footer>
+    <div class="footer-content">
+      <span>Treasury 2.0 &bull; J.P. Morgan Payments &bull; Interactive Trend Navigator</span>
+      <a href="mailto:nirav.s.kakariya@jpmorgan.com" class="contact-link-footer">nirav.s.kakariya@jpmorgan.com</a>
     </div>
   </footer>
 
@@ -930,14 +890,14 @@
 
       if (anyUnflipped) {
         flipAllBtn.innerHTML = `
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           Show Front Sides
         `;
       } else {
         flipAllBtn.innerHTML = `
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           Flip All Cards
@@ -948,7 +908,7 @@
     resetBtn.addEventListener('click', () => {
       cards.forEach(card => card.classList.remove('flipped'));
       flipAllBtn.innerHTML = `
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         Flip All Cards
