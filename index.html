@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasury 2.0: 12 Trends Built for a New Era</title>
+  <!-- Modern Serif and Sans-Serif Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Styling variables matching JPM Brand colors */
+    :root {
+      --bg-cream: #F0EBE1;
+      --espresso: #3D1F0D;
+      --tan-warm: #C4A882;
+      --tan-light: #E8E2D5;
+      --white: #FFFFFF;
+      --shadow-subtle: rgba(61, 31, 13, 0.08);
+      --shadow-hover: rgba(61, 31, 13, 0.15);
+      
+      /* Pillar specific borders & badges colors */
+      --pillar-infra: #9c7b50;
+      --pillar-intel: #bd7d42;
+      --pillar-talent: #3D1F0D;
+      --pillar-strategy: #8a6a4f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--espresso);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 4rem 1rem;
+      overflow-x: hidden;
+    }
+
+    /* Brand Header */
+    header {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid rgba(61, 31, 13, 0.15);
+      padding-bottom: 2rem;
+    }
+
+    .brand-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-logo span {
+      font-weight: 300;
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: 400;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.5;
+    }
+
+    /* Grid layout controls */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background-color: var(--espresso);
+      color: var(--bg-cream);
+      border: 1px solid var(--espresso);
+      padding: 0.75rem 1.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 6px var(--shadow-subtle);
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      color: var(--espresso);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px var(--shadow-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--espresso);
+      border: 1px solid var(--espresso);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--espresso);
+      color: var(--bg-cream);
+    }
+
+    /* 12-Card Grid Layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+      perspective: 1200px;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Interactive Flip Card */
+    .card {
+      height: 320px;
+      cursor: pointer;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 8px;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 16px var(--shadow-subtle);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      border: 1px solid rgba(61, 31, 13, 0.12);
+    }
+
+    /* Card Front Styling */
+    .card-front {
+      background-color: var(--white);
+      transform: rotateY(0deg);
+    }
+
+    .card:hover .card-front {
+      box-shadow: 0 12px 24px var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .trend-num {
+      font-size: 2.2rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--espresso);
+      line-height: 1;
+      opacity: 0.85;
+    }
+
+    .pillar-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      color: var(--white);
+    }
+
+    .trend-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--espresso);
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-top: 1rem;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-top: 1px solid rgba(61, 31, 13, 0.08);
+      padding-top: 0.75rem;
+    }
+
+    .pillar-name {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--espresso);
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .flip-hint {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--tan-warm);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Card Back Styling */
+    .card-back {
+      background-color: var(--espresso);
+      color: var(--bg-cream);
+      transform: rotateY(180deg);
+      border: 1px solid var(--espresso);
+    }
+
+    .card-back .trend-title-back {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      opacity: 0.75;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(240, 235, 225, 0.15);
+      padding-bottom: 0.5rem;
+    }
+
+    .stat-container {
+      background-color: rgba(240, 235, 225, 0.08);
+      border-left: 3px solid var(--tan-warm);
+      padding: 0.85rem 1rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 1rem;
+    }
+
+    .stat-value {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--tan-warm);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      margin-top: 0.2rem;
+    }
+
+    .trend-desc {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-weight: 400;
+      opacity: 0.95;
+    }
+
+    .card-back-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+    }
+
+    .back-indicator {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--tan-warm);
+      opacity: 0.8;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Vector SVG Icons */
+    .icon-wrapper {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: var(--bg-cream);
+      color: var(--espresso);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .icon-wrapper {
+      background-color: var(--tan-warm);
+      color: var(--white);
+    }
+
+    /* Footer & CTA */
+    footer {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      border-top: 2px solid rgba(61, 31, 13, 0.15);
+      padding-top: 2.5rem;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .cta-container {
+      background-color: var(--white);
+      border: 1px solid rgba(61, 31, 13, 0.12);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 8px 16px var(--shadow-subtle);
+    }
+
+    .cta-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      opacity: 0.85;
+    }
+
+    .contact-link {
+      color: var(--espresso);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid var(--tan-warm);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding-bottom: 2px;
+    }
+
+    .contact-link:hover {
+      color: var(--tan-warm);
+      border-bottom-color: var(--espresso);
+    }
+
+    .footer-credits {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .main-title {
+        font-size: 2rem;
+      }
+      .card {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+      .main-title {
+        font-size: 1.75rem;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand Header -->
+  <header>
+    <div class="brand-logo">
+      J.P.Morgan <span>| Payments</span>
+    </div>
+    <h1 class="main-title">Treasury 2.0</h1>
+    <p class="subtitle">Built for a New Era: 12 Key Trends across Infrastructure, Intelligence, Talent, and Strategy.</p>
+    
+    <!-- Active Interaction Buttons -->
+    <div class="controls">
+      <button class="btn" id="flipAllBtn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Flip All Cards
+      </button>
+      <button class="btn btn-secondary" id="resetBtn">Reset View</button>
+    </div>
+  </header>
+
+  <!-- Interactive Grid Container -->
+  <div class="grid-container">
+
+    <!-- Card 1 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="infra">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">01</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
+        </div>
+        <h3 class="trend-title">Agent Native Infrastructure</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 01</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Agent Native Infrastructure</h4>
+        <div class="stat-container">
+          <div class="stat-value">Table Stakes</div>
+          <div class="stat-label">the new baseline, not the edge</div>
+        </div>
+        <p class="trend-desc">Agent native infrastructure becomes table stakes; Legacy systems unable to support treasury AI ambition.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="infra">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">02</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
+        </div>
+        <h3 class="trend-title">Multi-rail Reality</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 01</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Multi-rail Reality</h4>
+        <div class="stat-container">
+          <div class="stat-value">300+</div>
+          <div class="stat-label">payment methods globally</div>
+        </div>
+        <p class="trend-desc">Multi-rail strategy becomes compelling and inevitable as global payment fragmentation accelerates.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="infra">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">03</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-infra)">Infrastructure</span>
+        </div>
+        <h3 class="trend-title">Tokenization past the Hype</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 01</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Tokenization past the Hype</h4>
+        <div class="stat-container">
+          <div class="stat-value">2026</div>
+          <div class="stat-label">the year of real adoption</div>
+        </div>
+        <p class="trend-desc">Stablecoins and Deposit tokens emerge stronger; Treasury and commercial use catching up.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="intel">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">04</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
+        </div>
+        <h3 class="trend-title">Permanent Polycrisis</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 02</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Permanent Polycrisis</h4>
+        <div class="stat-container">
+          <div class="stat-value">$62T</div>
+          <div class="stat-label">market cap erased since 2001</div>
+        </div>
+        <p class="trend-desc">Treasury resiliency & agility becomes business critical as disruptions compound.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="intel">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">05</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
+        </div>
+        <h3 class="trend-title">Regulatory Density Ramp</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 02</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Regulatory Density Ramp</h4>
+        <div class="stat-container">
+          <div class="stat-value">4+</div>
+          <div class="stat-label">major frameworks at once</div>
+        </div>
+        <p class="trend-desc">Shift from reactive compliance to proactive Intelligence; NACHA, Basel IV, ISO 20022, Genius Act etc.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="intel">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">06</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-intel)">Intelligence</span>
+        </div>
+        <h3 class="trend-title">Fraud Outpacing Defense</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 02</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Fraud Outpacing Defense</h4>
+        <div class="stat-container">
+          <div class="stat-value">63 &rarr; 7 days</div>
+          <div class="stat-label">to exploit (2018 &rarr; today)</div>
+        </div>
+        <p class="trend-desc">$40B in AI amplified risk losses projected by 2027 as attack windows collapse.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="talent">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">07</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
+        </div>
+        <h3 class="trend-title">Human in the Loop</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 03</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Human in the Loop</h4>
+        <div class="stat-container">
+          <div class="stat-value">Zero Error</div>
+          <div class="stat-label">the treasury standard</div>
+        </div>
+        <p class="trend-desc">Low to zero-error standard in treasury makes the case for AI pairing with human judgment.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="talent">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">08</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
+        </div>
+        <h3 class="trend-title">Hollowing of the Middle</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 03</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Hollowing of the Middle</h4>
+        <div class="stat-container">
+          <div class="stat-value">72%</div>
+          <div class="stat-label">treasuries face hiring difficulty</div>
+        </div>
+        <p class="trend-desc">Cutting entry-levels kills pipeline; Average teams run with ~12 FTEs.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="talent">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">09</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-talent)">Talent</span>
+        </div>
+        <h3 class="trend-title">The New Skill Stack</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 03</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">The New Skill Stack</h4>
+        <div class="stat-container">
+          <div class="stat-value">4 Core Skills</div>
+          <div class="stat-label">now commanding premium</div>
+        </div>
+        <p class="trend-desc">AI literacy, data fluency, domain expertise, and strategic value articulation commanding premium.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">10</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
+        </div>
+        <h3 class="trend-title">In-House Bank Imperative</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 04</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">In-House Bank Imperative</h4>
+        <div class="stat-container">
+          <div class="stat-value">1 Hub</div>
+          <div class="stat-label">vs. fragmented liquidity</div>
+        </div>
+        <p class="trend-desc">Complex account structure and decentralized liquidity management eating operational bandwidth.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">11</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
+        </div>
+        <h3 class="trend-title">Working Capital Gap</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 04</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Working Capital Gap</h4>
+        <div class="stat-container">
+          <div class="stat-value">$761B</div>
+          <div class="stat-label">free cash flow trapped</div>
+        </div>
+        <p class="trend-desc">Trapped working capital becomes the big treasury opportunity to unlock.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 12 -->
+    <div class="card" onclick="toggleCard(this)" data-pillar="strategy">
+      <div class="card-face card-front">
+        <div class="card-top">
+          <span class="trend-num">12</span>
+          <span class="pillar-badge" style="background-color: var(--pillar-strategy)">Strategy</span>
+        </div>
+        <h3 class="trend-title">Seat at the Deal Table</h3>
+        <div class="card-bottom">
+          <span class="pillar-name">Pillar 04</span>
+          <div class="flip-hint">
+            <span>Flip</span>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <h4 class="trend-title-back">Seat at the Deal Table</h4>
+        <div class="stat-container">
+          <div class="stat-value">+26%</div>
+          <div class="stat-label">global M&A volume surge</div>
+        </div>
+        <p class="trend-desc">Large cross border deals demand early treasury engagement than ever before.</p>
+        <div class="card-back-footer">
+          <span class="back-indicator">Click to Return</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Engagement Footer -->
+  <footer>
+    <div class="cta-container">
+      <h3 class="cta-title">Let's keep the conversation going</h3>
+      <p class="cta-text">Which of these 12 trends hits closest to home for you? Share your views and let's talk — I'd love to hear how this lands for your treasury team.</p>
+      <a href="mailto:nirav.s.kakariya@jpmorgan.com" class="contact-link">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+        </svg>
+        nirav.s.kakariya@jpmorgan.com
+      </a>
+    </div>
+    
+    <div class="footer-credits">
+      Treasury 2.0 &bull; J.P. Morgan Payments &bull; Interactive Trend Navigator
+    </div>
+  </footer>
+
+  <script>
+    // Toggle flip on card click
+    function toggleCard(cardElement) {
+      cardElement.classList.toggle('flipped');
+    }
+
+    // Toggle Flip All Cards
+    const flipAllBtn = document.getElementById('flipAllBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const cards = document.querySelectorAll('.card');
+
+    flipAllBtn.addEventListener('click', () => {
+      // If any card is not flipped, flip all to back. Else flip all to front.
+      const anyUnflipped = Array.from(cards).some(card => !card.classList.contains('flipped'));
+      
+      cards.forEach(card => {
+        if (anyUnflipped) {
+          card.classList.add('flipped');
+        } else {
+          card.classList.remove('flipped');
+        }
+      });
+
+      // Update button text accordingly
+      if (anyUnflipped) {
+        flipAllBtn.innerHTML = `
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Show Front Sides
+        `;
+      } else {
+        flipAllBtn.innerHTML = `
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Flip All Cards
+        `;
+      }
+    });
+
+    // Reset View to original front-facing state
+    resetBtn.addEventListener('click', () => {
+      cards.forEach(card => card.classList.remove('flipped'));
+      flipAllBtn.innerHTML = `
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17m-13 4h4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Flip All Cards
+      `;
+    });
+  </script>
+</body>
+</html>
